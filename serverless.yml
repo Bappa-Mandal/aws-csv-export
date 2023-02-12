@@ -1,0 +1,25 @@
+service: csv-import
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:GetObject
+            - s3:ListObject
+            - s3:ListBucket
+          Resource: '*'
+
+functions:
+  expense:
+    handler: dist/expense.handler
+    events:
+      - s3:
+          bucket: aws-gagan-expense-data
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: uploads/
+            - suffix: .csv
