@@ -1,6 +1,6 @@
 {
   "name": "aws-csv-import",
-  "version": "1.0.4s",
+  "version": "1.0.5",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
